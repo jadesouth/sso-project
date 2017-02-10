@@ -4,9 +4,9 @@
  */
 
 // 引入需要的文件
-include(__DIR__ . DIRECTORY_SEPARATOR . 'sso' . DIRECTORY_SEPARATOR . 'SSOService.class.php');
-include(__DIR__ . DIRECTORY_SEPARATOR . 'sso' . DIRECTORY_SEPARATOR . 'User.class.php');
-include(__DIR__ . DIRECTORY_SEPARATOR . 'sso' . DIRECTORY_SEPARATOR . 'Token.class.php');
+include(__DIR__ . DIRECTORY_SEPARATOR . 'sso_server' . DIRECTORY_SEPARATOR . 'SSOServer.class.php');
+include(__DIR__ . DIRECTORY_SEPARATOR . 'sso_server' . DIRECTORY_SEPARATOR . 'User.class.php');
+include(__DIR__ . DIRECTORY_SEPARATOR . 'sso_server' . DIRECTORY_SEPARATOR . 'Token.class.php');
 
 // 检验登录
 if ('POST' == $_SERVER['REQUEST_METHOD']) {
