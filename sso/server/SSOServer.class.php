@@ -1,5 +1,5 @@
 <?php
-namespace sso\server
+namespace sso\server;
 
 /**
  * SSO服务器端

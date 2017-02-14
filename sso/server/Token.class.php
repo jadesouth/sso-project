@@ -1,5 +1,5 @@
 <?php
-namespace sso\server
+namespace sso\server;
 
 /**
  * Class Token token相关操作类

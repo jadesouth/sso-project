@@ -1,5 +1,5 @@
 <?php
-namespace sso\server
+namespace sso\server;
 
 /**
  * Class User 用户类
@@ -62,7 +62,7 @@ class User
     {
         $all_user_info = [];
         // 获取所有用户信息
-        $raw_user_info = json_decode(file_get_contents('./user_info.json'));
+        $raw_user_info = json_decode(file_get_contents('./user_info.json'), true);
         if(! empty($raw_user_info)) {
             foreach($raw_user_info as $user) {
                 $all_user_info[$user['id']] = $user;
