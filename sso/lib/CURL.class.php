@@ -1,5 +1,5 @@
 <?php
-namespace sso/lib
+namespace sso\lib;
 
 class CURL
 {
@@ -15,8 +15,8 @@ class CURL
      * @var CURL设置选项
      */
     private $opt = [
-        'CURLOPT_RETURNTRANSFER' => true,
-        'CURLOPT_TIMEOUT'        => 6,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 6,
     ];
 
 
@@ -34,8 +34,8 @@ class CURL
      */
     public function post(array $post_data): string
     {
-        $this->opt['CURLOPT_POST']       = true;
-        $this->opt['CURLOPT_POSTFIELDS'] = $post_data;
+        $this->opt[CURLOPT_POST]       = true;
+        $this->opt[CURLOPT_POSTFIELDS] = $post_data;
         curl_setopt_array($this->curl, $this->opt);
         return curl_exec($this->curl);
     }
@@ -46,7 +46,7 @@ class CURL
     public function get(array $get_data): string
     {
         curl_setopt_array($this->curl, $this->opt);
-        return curl_exec($this->curl)
+        return curl_exec($this->curl);
     }
 
     /**
