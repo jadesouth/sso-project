@@ -9,11 +9,11 @@ use sso\lib\CURL;
 class SSOClient
 {
     /**
-     * @var 配置需要SSO登录的其他域名
+     * @var array 配置需要SSO登录的其他域名
      */
     private static $otherDomain = [
         'http://www.s2.com',
-        'http://www.s3.com',
+//        'http://www.s3.com',
     ];
 
 
@@ -35,6 +35,7 @@ class SSOClient
         $res = $curl->post($post_data);
         $res = json_decode($res, true);
         if ($res['is_login']) {
+            session_save_path('/tmp/sess/s1/');
             session_start();
             $_SESSION['token']    = $res['token'];
             $_SESSION['user']     = $res['user'];
@@ -48,15 +49,42 @@ class SSOClient
     /**
      * otherDomainLogin 输出SSO登录其他域名的iframe
      *
+     * @param string token SSO登录成功的Token
+     *
      * @return string 登录其他域名的iframe
      */
-    public static function otherDomainLogin(): string
+    public static function otherDomainLogin(string $token): string
     {
         $iframe = '';
         foreach (self::$otherDomain as $domain) {
-            $iframe .= '<iframe src="' . $domain . '/sso_login.php" width="0" height="0" border="0" frameborder="0" style="display:none;"></iframe>';
+            $iframe .= '<iframe src="' . $domain . '/sso_login.php?token=' . $token . '" width="0" height="0" border="0" frameborder="0" style="display:none;"></iframe>';
         }
 
         return $iframe;
+    }
+
+    /**
+     * ssoLogin 提供SSO被动登录功能
+     *
+     * @param string $token 被动登录的Token
+     *
+     * @return string 登录结果信息
+     */
+    public static function ssoLogin(string $token): string
+    {
+        // 检验Token合法性
+        $curl = new CURL('http://www.sso.com/sso_login.php?token=' . $token);
+        $curl->setCookies(['SSOTOKEN'=>$token]);
+        $res = $curl->get();
+        $res = json_decode($res, true);
+        if ($res['is_login']) {
+            session_start();
+            $_SESSION['token']    = $token;
+            $_SESSION['user']     = $res['user'];
+            $_SESSION['is_login'] = true;
+            return 'SUCCESS';
+        } else {
+            return $res['msg'];
+        }
     }
 }

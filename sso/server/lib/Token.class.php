@@ -20,9 +20,25 @@ class Token
         return md5(md5(md5($username) . $timestamp) . $salt);
     }
 
-    public static function checkToken()
+    /**
+     * checkToken
+     *
+     * @return bool
+     */
+    /**
+     * checkToken 检查Token是否正确
+     *
+     * @param string $token Token串
+     * @return bool
+     */
+    public static function checkToken(string $token): bool
     {
-    
+        echo session_name();
+        if ($token == $_SESSION['token']['token']) {
+            return true;
+        }
+
+        return false;
     }
 
     public static function getToken()
