@@ -27,16 +27,15 @@ class SSOClient
      */
     public static function login(string $username, string $password): string
     {
-        $curl = new CURL('http://www.sso.com/login.php');
+        $curl = new CURL(SSO_ACTIVE_SERVER);
         $post_data = [
             'username' => $username,
             'password' => $password,
         ];
         $res = $curl->post($post_data);
+        var_dump($res);
         $res = json_decode($res, true);
         if ($res['is_login']) {
-            session_save_path('/tmp/sess/s1/');
-            session_start();
             $_SESSION['token']    = $res['token'];
             $_SESSION['user']     = $res['user'];
             $_SESSION['is_login'] = true;
@@ -47,20 +46,20 @@ class SSOClient
     }
 
     /**
-     * otherDomainLogin 输出SSO登录其他域名的iframe
+     * otherDomainLogin 输出SSO登录其他域名的iFrame
      *
      * @param string token SSO登录成功的Token
      *
-     * @return string 登录其他域名的iframe
+     * @return string 登录其他域名的iFrame
      */
     public static function otherDomainLogin(string $token): string
     {
-        $iframe = '';
+        $iFrame = '';
         foreach (self::$otherDomain as $domain) {
-            $iframe .= '<iframe src="' . $domain . '/sso_login.php?token=' . $token . '" width="0" height="0" border="0" frameborder="0" style="display:none;"></iframe>';
+            $iFrame .= '<iframe src="' . $domain . '/sso_login.php?token=' . $token . '" width="0" height="0" border="0" frameborder="0" style="display:none;"></iframe>';
         }
 
-        return $iframe;
+        return $iFrame;
     }
 
     /**
