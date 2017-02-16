@@ -8,7 +8,7 @@ SSO实验项目
 
 SSO服务为C/S架构,Server端和Client端可以分别部署在相同物理机或不同物理机上,Client一般作为具体项目的类库使用.
 
-源码Clone后配置Nginx服务器后可直接测试查看效果. ^[nginx配置](#nginx)^
+源码Clone后配置Nginx服务器后可直接测试查看效果. [nginx配置](#Nginx配置说明)
 
 sso/server: 为SSO用户认证授权中心项目,也是整个单点登录的核心SSO系统,一般会独立部署
 sso/client: 为SSO客户端服务,一般同具体项目部署
@@ -58,7 +58,7 @@ system_1/system_2/system_3：分别为各个应用子项目
     └── sso_logout.php ----------------------------- 项目SSO被动登出处理文件
 ```
 
-## <span name="nginx">目Nginx配置说明</span>
+## Nginx配置说明
 
 在不同的虚拟机中分别配置了3个独立域名的系统和SSO服务端
 
