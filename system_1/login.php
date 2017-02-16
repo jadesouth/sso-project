@@ -15,11 +15,14 @@ if ('POST' == $_SERVER['REQUEST_METHOD']):
     session_save_path(SESSION_PATH);
     session_start();
     $res = SSOClient::login($username, $password);
-    if ('SUCCESS' == $res) {
-        echo 'SUCCESS';
-        header('Location: http://www.s1.com/index.php');
+    $res = json_decode($res, true);
+    if ('SUCCESS' == $res['is_login']) {
+        $_SESSION['token']    = $res['token'];
+        $_SESSION['user']     = $res['user'];
+        $_SESSION['is_login'] = true;
+        header('Location: ' . LOCAL_URL);
     } else {
-        echo "<div style=\"margin:30px auto;text-align:center;\">登录失败：<span style=\"color:red\">{$res}</span>";
+        echo "<div style=\"margin:30px auto;text-align:center;\">登录失败：<span style=\"color:red\">{$res['msg']}</span>";
     }
 else:
 ?>

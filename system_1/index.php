@@ -3,7 +3,7 @@
     include __DIR__ . '/config.inc.php';
     session_save_path(SESSION_PATH);
     session_start();
-    var_dump($_COOKIE, session_name(), session_id());
+    var_dump($_COOKIE, session_name(), session_id(), $_SESSION);
     $is_login = empty($_SESSION['is_login']) ? false : true;
 ?>
 <html>
