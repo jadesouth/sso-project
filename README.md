@@ -9,6 +9,34 @@ SSO实验项目
 SSO服务为C/S架构,Server端和Client端可以分别部署在相同物理机或不同物理机上,Client一般作为具体项目的类库使用.
 
 源码Clone后配置Nginx服务器后可直接测试查看效果. [nginx配置](#nginx配置说明)
+测试账号:
+```php
+$user_info[] = [
+    'id'       => 1,
+    'username' => 'foo',
+    'password' => 'bar',
+];
+$user_info[] = [
+    'id'       => 2,
+    'username' => 'zhangsan',
+    'password' => '111111',
+];
+$user_info[] = [
+    'id'       => 2,
+    'username' => 'lisi',
+    'password' => '111111',
+];
+$user_info[] = [
+    'id'       => 2,
+    'username' => 'wangwu',
+    'password' => '111111',
+];
+$user_info[] = [
+    'id'       => 2,
+    'username' => 'zhaoliu',
+    'password' => '111111',
+];
+```
 
 sso/server: 为SSO用户认证授权中心项目,也是整个单点登录的核心SSO系统,一般会独立部署
 sso/client: 为SSO客户端服务,一般同具体项目部署
