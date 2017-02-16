@@ -22,8 +22,11 @@ class CURL
 
     /**
      * CURL construct.
+     *
+     * @param string $url CURL请求的URL
+     * @param array  $opt CURL选项
      */
-    public function __construct(string $url, array $opt = [])
+    public function __construct(string $url = null, array $opt = [])
     {
         $this->opt = $opt + $this->opt;
         $this->curl = curl_init($url);
@@ -64,6 +67,7 @@ class CURL
      */
     public function setCookies(array $cookies)
     {
+        $format_cookies = [];
         foreach ($cookies as $cookie_name => $cookie_value) {
             $format_cookies[] = "{$cookie_name}={$cookie_value}";
         }
@@ -74,14 +78,19 @@ class CURL
 
     /**
      * setUrl url setter.
+     *
+     * @param string $url CURL的URL
      */
     public function setUrl(string $url)
     {
+        curl_setopt($this->curl, CURLOPT_URL, $url);
         $this->url = $url;
     }
 
     /**
      * setOpt opt setter.
+     *
+     * @param array $opt 选项
      */
     public function setOpt(array $opt)
     {
