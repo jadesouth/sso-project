@@ -15,8 +15,8 @@ system_1/system_2/system_3: 分别为各个应用子项目.
 
 源码Clone后配置Nginx服务器后可直接测试查看效果 [nginx配置](#nginx和host配置说明).
 - 运行环境
-    PHP7 >= PHP7.0
-    Nginx/Apache服务器
+    - PHP7 >= PHP7.0
+    - Nginx/Apache等WEB服务器
 - 测试账号(也可自己编辑sso/user/create_user_info.php自己生成测试账号或实现自己的账号体系):
 ```php
 $user_info[] = [
