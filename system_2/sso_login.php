@@ -5,7 +5,7 @@ include __DIR__ . '/config.inc.php';
 session_save_path(SESSION_PATH);
 session_start();
 // 检测是否已经登录
-if (! empty($_SESSION['is_login']) && true == $_SESSION['is_login']) {
+if (! empty($_SESSION['is_login']) && true === $_SESSION['is_login']) {
     echo 'SUCCESS';
     return;
 }
