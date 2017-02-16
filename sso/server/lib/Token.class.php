@@ -33,7 +33,6 @@ class Token
      */
     public static function checkToken(string $token): bool
     {
-        echo session_name();
         if ($token == $_SESSION['token']['token']) {
             return true;
         }
