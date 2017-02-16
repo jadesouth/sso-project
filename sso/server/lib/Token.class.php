@@ -21,11 +21,6 @@ class Token
     }
 
     /**
-     * checkToken
-     *
-     * @return bool
-     */
-    /**
      * checkToken 检查Token是否正确
      *
      * @param string $token Token串
@@ -38,23 +33,5 @@ class Token
         }
 
         return false;
-    }
-
-    public static function getToken()
-    {
-    
-    }
-
-    public static function saveToken()
-    {
-    
-    }
-
-    public static function deleteToken()
-    {
-    }
-
-    public static function cleanToken()
-    {
     }
 }
