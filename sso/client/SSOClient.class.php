@@ -62,6 +62,21 @@ class SSOClient
     }
 
     /**
+     * otherDomainLogout 输出SSO登出其他域名的iFrame
+     *
+     * @return string 登出其他域名的iFrame
+     */
+    public static function otherDomainLogout(): string
+    {
+        $iFrame = '';
+        foreach (self::$otherDomain as $domain) {
+            $iFrame .= '<iframe src="' . $domain . '/sso_logout.php" width="0" height="0" border="0" frameborder="0" style="display:none;"></iframe>';
+        }
+
+        return $iFrame;
+    }
+
+    /**
      * ssoLogin 提供SSO被动登录功能
      *
      * @param string $token 被动登录的Token
@@ -86,5 +101,19 @@ class SSOClient
         } else {
             return json_encode(['is_login' => false, 'msg' => $res['msg']]);
         }
+    }
+
+    /**
+     * ssoLogout SSO退出
+     *
+     * @param string $token 退出的Token
+     *
+     * @return string 登录结果JSON信息
+     */
+    public static function ssoLogout(string $token): string
+    {
+        $curl = new CURL(SSO_LOGOUT_SERVER . '?token=' . $token);
+        $curl->setCookies(['SSOTOKEN' => $token]);
+        return $curl->get();
     }
 }
