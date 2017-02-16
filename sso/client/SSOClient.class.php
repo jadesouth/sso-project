@@ -11,10 +11,7 @@ class SSOClient
     /**
      * @var array 配置需要SSO登录的其他域名
      */
-    private static $otherDomain = [
-        'http://www.s2.com',
-//        'http://www.s3.com',
-    ];
+    private static $otherDomain = SSO_OTHER_DOMAIN;
 
 
     /**
@@ -33,22 +30,24 @@ class SSOClient
             'password' => $password,
         ];
         $res = $curl->post($post_data);
-        var_dump($res);
         $res = json_decode($res, true);
         if ($res['is_login']) {
-            $_SESSION['token']    = $res['token'];
-            $_SESSION['user']     = $res['user'];
-            $_SESSION['is_login'] = true;
-            return 'SUCCESS';
+            $return = [
+                'is_login' => true,
+                'token'    => $res['token'],
+                'msg'      => 'SUCCESS',
+                'user'     => $res['user'],
+            ];
+            return json_encode($return, true);
         } else {
-            return $res['msg'];
+            return json_encode(['is_login' => false, 'msg' => $res['msg']]);
         }
     }
 
     /**
      * otherDomainLogin 输出SSO登录其他域名的iFrame
      *
-     * @param string token SSO登录成功的Token
+     * @param string $token SSO登录成功的Token
      *
      * @return string 登录其他域名的iFrame
      */
@@ -67,23 +66,25 @@ class SSOClient
      *
      * @param string $token 被动登录的Token
      *
-     * @return string 登录结果信息
+     * @return string 登录结果JSON信息
      */
     public static function ssoLogin(string $token): string
     {
         // 检验Token合法性
-        $curl = new CURL('http://www.sso.com/sso_login.php?token=' . $token);
+        $curl = new CURL(SSO_PASSIVE_SERVER . '?token=' . $token);
         $curl->setCookies(['SSOTOKEN'=>$token]);
         $res = $curl->get();
         $res = json_decode($res, true);
         if ($res['is_login']) {
-            session_start();
-            $_SESSION['token']    = $token;
-            $_SESSION['user']     = $res['user'];
-            $_SESSION['is_login'] = true;
-            return 'SUCCESS';
+            $return = [
+                'is_login' => true,
+                'token'    => $token,
+                'msg'      => 'SUCCESS',
+                'user'     => $res['user'],
+            ];
+            return json_encode($return, true);
         } else {
-            return $res['msg'];
+            return json_encode(['is_login' => false, 'msg' => $res['msg']]);
         }
     }
 }
