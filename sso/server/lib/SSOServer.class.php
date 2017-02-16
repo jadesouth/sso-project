@@ -27,4 +27,24 @@ class SSOServer
 
         return 0;
     }
+
+    /**
+     * logout SSO登出操作
+     *
+     * @return bool
+     */
+    public static function logout(): bool
+    {
+        // 销毁服务端SESSION
+        session_unset();
+        session_regenerate_id(true);
+        $session_cookie_params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 3600,
+            $session_cookie_params['path'], $session_cookie_params['domain'],
+            $session_cookie_params['secure'], $session_cookie_params['httponly']
+        );
+        session_destroy();
+
+        return true;
+    }
 }
