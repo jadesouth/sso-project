@@ -11,7 +11,6 @@ include __DIR__ . '/lib/Token.class.php';
 
 $token = (string)$_GET['token'];
 session_name('SSOTOKEN');
-session_save_path('/tmp/sess/sso/');
 session_start();
 if (Token::checkToken($token)) {
     $user = [
