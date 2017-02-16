@@ -62,7 +62,7 @@ class CURL
      *
      * @return void
      */
-    public function setCookies(array $cookies): void
+    public function setCookies(array $cookies)
     {
         foreach ($cookies as $cookie_name => $cookie_value) {
             $format_cookies[] = "{$cookie_name}={$cookie_value}";
