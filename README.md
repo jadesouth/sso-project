@@ -8,7 +8,7 @@ SSO实验项目
 
 SSO服务为C/S架构,Server端和Client端可以分别部署在相同物理机或不同物理机上,Client一般作为具体项目的类库使用.
 
-源码Clone后配置Nginx服务器后可直接测试查看效果. [nginx配置](#Nginx和Host配置说明)
+源码Clone后配置Nginx服务器后可直接测试查看效果. [nginx配置](#nginx和host配置说明)
 
 测试账号(也可自己编辑sso/user/create_user_info.php自己生成测试账号或实现自己的账号体系):
 ```php
