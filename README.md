@@ -7,10 +7,17 @@ SSO实验项目
 项目实现一套实验性质的跨域SSO登录服务.
 
 SSO服务为C/S架构,Server端和Client端可以分别部署在相同物理机或不同物理机上,Client一般作为具体项目的类库使用.
+sso/server: 为SSO用户认证授权中心项目,也是整个单点登录的核心SSO系统,一般会独立部署.
+sso/client: 为SSO客户端服务,一般同具体项目部署.
+system_1/system_2/system_3: 分别为各个应用子项目.
+各个应用子项目比如可分别为主站/论坛/博客等.
+子项目可以是独立不想关的域名,可分别部署不同的物理机上,也可部署同一台物理机的不同虚拟主机.
 
-源码Clone后配置Nginx服务器后可直接测试查看效果. [nginx配置](#nginx和host配置说明)
-
-测试账号(也可自己编辑sso/user/create_user_info.php自己生成测试账号或实现自己的账号体系):
+源码Clone后配置Nginx服务器后可直接测试查看效果 [nginx配置](#nginx和host配置说明).
+- 运行环境
+    PHP7 >= PHP7.0
+    Nginx/Apache服务器
+- 测试账号(也可自己编辑sso/user/create_user_info.php自己生成测试账号或实现自己的账号体系):
 ```php
 $user_info[] = [
     'id'       => 1,
@@ -38,12 +45,6 @@ $user_info[] = [
     'password' => '111111',
 ];
 ```
-
-sso/server: 为SSO用户认证授权中心项目,也是整个单点登录的核心SSO系统,一般会独立部署
-sso/client: 为SSO客户端服务,一般同具体项目部署
-system_1/system_2/system_3：分别为各个应用子项目
-各个应用子项目比如可分别为主站/论坛/博客等
-子项目可以是独立不想关的域名，可分别部署不同的物理机上，也可部署同一台物理机的不同虚拟主机
 
 ## 项目目录文件结构
 ```
