@@ -1,7 +1,6 @@
 <?php
     // 引入配置文件
     include __DIR__ . '/config.inc.php';
-    session_save_path(SESSION_PATH);
     session_start();
     $is_login = empty($_SESSION['is_login']) ? false : true;
 ?>

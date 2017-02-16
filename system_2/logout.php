@@ -8,7 +8,6 @@ include __DIR__ . '/config.inc.php';
 include dirname(__DIR__) . '/sso/client/SSOClient.class.php';
 include dirname(__DIR__) . '/sso/lib/CURL.class.php';
 
-session_save_path(SESSION_PATH);
 session_start();
 // 通知SSO退出登录
 if (! empty($_SESSION['token'])) {

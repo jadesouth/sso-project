@@ -60,7 +60,6 @@ function save_sso_session(array $user)
     /* 记录SSO服务端登录全局SESSION */
     session_name('SSOTOKEN');
     session_id($token);
-    session_save_path('/tmp/sess/sso/');
     session_start();
     $_SESSION['token']['timestamp'] = $timestamp;
     $_SESSION['token']['salt']      = $salt;

@@ -12,7 +12,6 @@ if ('POST' == $_SERVER['REQUEST_METHOD']):
     $username = trim($_POST['username']);
     $password = $_POST['password'];
     // 进行SSO登录
-    session_save_path(SESSION_PATH);
     session_start();
     $res = SSOClient::login($username, $password);
     $res = json_decode($res, true);
