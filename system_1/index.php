@@ -23,6 +23,11 @@
         ?>
         <?php else:?>
         <h3>您还未登录,请先<a href="./login.php">登录系统1</a></h3>
+        <?php
+            include dirname(__DIR__) . '/sso/client/SSOClient.class.php';
+            $iFrame = sso\client\SSOClient::otherDomainLogout();
+            echo $iFrame;
+        ?>
         <?php endif;?>
     </body>
 </html>
