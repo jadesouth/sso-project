@@ -5,8 +5,8 @@
 
 // 引入相关文件
 include __DIR__ . '/config.inc.php';
-include dirname(__DIR__) . '/sso/client/SSOClient.class.php';
-include dirname(__DIR__) . '/sso/lib/CURL.class.php';
+include __DIR__ . '/sso/SSOClient.class.php';
+include __DIR__ . '/sso/lib/CURL.class.php';
 
 session_start();
 // 通知SSO退出登录

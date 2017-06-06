@@ -10,8 +10,8 @@ if (! empty($_SESSION['is_login']) && true === $_SESSION['is_login']) {
 }
 
 // 进行SSO登录
-include dirname(__DIR__) . '/sso/client/SSOClient.class.php';
-include dirname(__DIR__) . '/sso/lib/CURL.class.php';
+include __DIR__ . '/sso/SSOClient.class.php';
+include __DIR__ . '/sso/lib/CURL.class.php';
 
 $token = (string)$_GET['token'];
 $res = \sso\client\SSOClient::ssoLogin($token);

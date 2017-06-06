@@ -34,7 +34,7 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
                 'username' => $user['username']
             ],
         ];
-        die(json_encode($return, true));
+        die(json_encode($return, JSON_UNESCAPED_UNICODE));
     } elseif (-1 == $result) {
         die(json_encode(['is_login' => false, 'msg' => 'USER NOT EXISTS.']));
     } elseif (-2 == $result) {
@@ -43,7 +43,7 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
         die(json_encode(['is_login' => false, 'msg' => 'UNKNOWN ERROR.']));
     }
 } else {
-    die(json_encode(['is_login' => false, 'msg' => 'OPERATION NOT ALLOWED.'], true));
+    die(json_encode(['is_login' => false, 'msg' => 'OPERATION NOT ALLOWED.']));
 }
 
 /**

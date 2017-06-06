@@ -6,8 +6,8 @@ use sso\client\SSOClient;
 
 if ('POST' == $_SERVER['REQUEST_METHOD']):
     // 引入必要文件
-    include dirname(__DIR__) . '/sso/client/SSOClient.class.php';
-    include dirname(__DIR__) . '/sso/lib/CURL.class.php';
+    include __DIR__ . '/sso/SSOClient.class.php';
+    include __DIR__ . '/sso/lib/CURL.class.php';
     // 获取登录的用户名密码
     $username = trim($_POST['username']);
     $password = $_POST['password'];
