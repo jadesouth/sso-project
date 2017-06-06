@@ -15,7 +15,7 @@ $token = (string)$_GET['token'];
 session_name('SSOTOKEN');
 session_start();
 if (Token::checkToken($token)) {
-    if (SSOServer::logout($token)) {
+    if (SSOServer::logout()) {
         die(json_encode(['status' => true, 'msg' => 'SUCCESS']));
     } else {
         die(json_encode(['status' => false, 'msg' => 'LOGOUT FAILURE']));
